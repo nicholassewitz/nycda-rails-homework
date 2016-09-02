@@ -6,12 +6,11 @@ Class Triangle
   end
 
   def kind a,b,c
-    def equilateral? a,b,c
-      if a % 2 == 0 || b % 2 == 0 || c % 2 == 0
-        @equilateral
-      else
-        @isosceles
-      end
+    raise TriangleError if a <= 0 or a + b <= c
+    case [a,b,c].uniq.size
+    when 1 then :equilateral
+    when 2 then :isosceles
+    else        :scalene
     end
   end
 end
