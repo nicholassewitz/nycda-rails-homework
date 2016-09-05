@@ -1,0 +1,21 @@
+<h1>Welcome to my first form</h1>
+<p>Create a new Rails project.
+<ul>
+  <li>Create a page accessible at the URL /contact that contains a form with fields for a name, email, and message.</li>
+  <li>Upon submission of the contact form, bring the user to a page at the URL /thanks that displays the name, email, and message that was entered on the submitted form.</li>
+  <li>Create a homepage accessible at the root URL of the site (that is, http://localhost:3000) that contains a link to the contact page.</li>
+<ul></p>
+
+
+
+
+
+<%= form_tag('/contactsubmission') do %>
+  <%= label_tag(:name) %>
+  <%= text_field_tag(:name, '', :placeholder => 'Enter your name') %>
+  <%= label_tag(:email) %>
+  <%= text_field_tag(:email, '', placeholder: 'Enter your email') %>
+  <%= label_tag(:message) %>
+  <%= text_field_tag(:message, '', placeholder: 'Enter your message') %>
+  <%= submit_tag %>
+<% end %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root('home#index')
+  get('hello' => 'home#index')
+  get('hi-there' => 'home#index')
+  post('formal-hello/hi/there/how/are/you-whatever' => 'home#formal_hello')
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
