@@ -1,0 +1,29 @@
+one_to_many
+
+User Table
+name: string
+email: string
+dob: date
+
+Purchase Table
+transaction_date: date
+amount: integer
+user_id: integer
+
+many_to_many
+
+
+User Table
+name: string
+email: string
+dob: date
+
+Purchase Table
+transaction_date: date
+amount: integer
+
+Product Table
+product_name: string
+price: integer
+purchase_id: integer
+user_id: integer
