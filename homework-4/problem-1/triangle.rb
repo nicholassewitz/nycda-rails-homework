@@ -1,8 +1,8 @@
 Class Triangle
-  def initialize
-    @equilateral = equilateral
-    @isosceles = isosceles
-    @scalene = scalene
+  def initialize a,b,c
+    @a = a
+    @b = b
+    @c = c
   end
 
   def kind a,b,c
