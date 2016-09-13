@@ -4,7 +4,7 @@ module TweetsHelper
   end
 
   def delete_tweet_link(tweet)
-    link_to('Delete', tweet, method: :delete)
+    link_to('Delete', tweet, method: :delete, data: {confirm: 'Are you sure?'})
   end
 
 end
