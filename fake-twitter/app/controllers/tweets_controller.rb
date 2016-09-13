@@ -13,8 +13,7 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.create(tweet_params)
-    flash.notice = 'You successfully created a tweet!'
-    redirect_to(tweet_path(@tweet))
+    redirect_to_tweet('You successfully created a tweet')
   end
 
   def edit
@@ -40,6 +39,10 @@ class TweetsController < ApplicationController
 
   def tweet_params
     params[:tweet].permit(:title,:body,:location)
+  end
+
+  def redirect_to_tweet(notice)
+    redirect_to(@tweet, notice: notice)
   end
 
 end
