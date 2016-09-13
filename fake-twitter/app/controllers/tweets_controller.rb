@@ -13,6 +13,7 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.create(tweet_params)
+    redirect_to(tweet_path(@tweet))
   end
 
   def edit
