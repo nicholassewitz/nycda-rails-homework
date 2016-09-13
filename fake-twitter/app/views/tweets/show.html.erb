@@ -1,6 +1,3 @@
 <h1>Show Tweet</h1>
 
-<h2><%= @tweet.title %></h2>
-<p><%= @tweet.body %></p>
-<p>Location: <%= @tweet.location %></p>
-<p>At: <%= @tweet.created_at %></p>
+<%= render(@tweet) %>
