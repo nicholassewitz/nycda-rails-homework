@@ -3,11 +3,9 @@
 one:
   name: MyString
   email: MyString
-  string: MyString
-  dob: MyString
+  dob: 2016-09-16
 
 two:
   name: MyString
   email: MyString
-  string: MyString
-  dob: MyString
+  dob: 2016-09-16
