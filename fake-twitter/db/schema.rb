@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,28 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916222419) do
+ActiveRecord::Schema.define(version: 20160907230300) do
 
-  create_table "products", force: :cascade do |t|
-    t.string   "product_name"
-    t.integer  "price"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.date     "transaction_date"
-    t.integer  "amount"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "product_id"
-    t.integer  "user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.date     "dob"
+  create_table "tweets", force: :cascade do |t|
+    t.text     "body"
+    t.string   "title"
+    t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

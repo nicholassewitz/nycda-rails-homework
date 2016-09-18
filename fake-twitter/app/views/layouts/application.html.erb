@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Problem2</title>
+  <title>FakeTwitter</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav>
+  <p><%= link_to('All Tweets', root_path) %></p>
+  <p><%= link_to('New Tweets', new_tweet_path) %></p>
+</nav>
+
+<p><%= flash.notice %></p>
 
 <%= yield %>
 
