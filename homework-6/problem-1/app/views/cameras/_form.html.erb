@@ -1,0 +1,11 @@
+<%= form_for(@camera) do |f| %>
+  <p>
+    <%= f.label(:product_name) %>
+    <%= f.text_field(:product_name, autofocus: true, placeholder: 'Product name goes here') %>
+  </p>
+  <p>
+    <%= f.label(:price) %>
+    <%= f.text_area(:price) %>
+  </p>
+  <%= f.submit %>
+<% end %>
