@@ -1,10 +1,12 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action(:find_tweet, only: [:show, :edit, :update, :destroy])
+
   def index
     @tweets = Tweet.all
   end
 
   def show
-    find_tweet
   end
 
   def new
@@ -12,21 +14,20 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.create(tweet_params)
-    redirect_to_tweet('You successfully created a tweet')
+    # @tweet = Tweet.create(tweet_params.merge(user: current_user))
+    @tweet = current_user.tweets.create(tweet_params)
+    redirect_to_tweet_if_valid('You successfully created a tweet')
   end
 
   def edit
-    find_tweet
   end
 
   def update
-    find_tweet
     @tweet.update(tweet_params)
+    redirect_to_tweet_if_valid('You successfully created a tweet')
   end
 
   def destroy
-    @tweet = Tweet.find(params[:id])
     @tweet.destroy
     redirect_to(tweets_path)
   end
@@ -39,6 +40,10 @@ class TweetsController < ApplicationController
 
   def tweet_params
     params[:tweet].permit(:title,:body,:location)
+  end
+
+  def redirect_to_tweet_if_valid(notice)
+    redirect_to(@tweet, notice: notice) if @tweet.valid?
   end
 
   def redirect_to_tweet(notice)
