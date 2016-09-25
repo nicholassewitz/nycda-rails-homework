@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # @tweet = Tweet.create(tweet_params.merge(user: current_user))
     @user = current_user.users.create(user_params)
     redirect_to_user_if_valid('You successfully created a user')
   end
