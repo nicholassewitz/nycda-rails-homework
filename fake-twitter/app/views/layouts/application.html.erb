@@ -8,11 +8,20 @@
 </head>
 <body>
 <nav>
+  <% if user_signed_in? %>
+    <p><%= current_user.email %></p>
+    <p><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %></p>
+  <% else %>
+    <p><%= link_to('Log in', new_user_session_path) %></p>
+    <p><%= link_to('Sign up', new_user_registration_path) %></p>
+  <% end %>
+
   <p><%= link_to('All Tweets', root_path) %></p>
   <p><%= link_to('New Tweets', new_tweet_path) %></p>
 </nav>
 
-<p><%= flash.notice %></p>
+<p class="alert"><%= flash.alert %></p>
+<p class="notice"><%= flash.notice %></p>
 
 <%= yield %>
 

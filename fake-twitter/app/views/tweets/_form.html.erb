@@ -1,15 +1,25 @@
 <%= form_for(@tweet) do |f| %>
-  <p>
+<% if request.post? && @tweet.invalid? %>
+<p>
+    There were the following errors:
+</p>
+<ul>
+    <% @tweet.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+</ul>
+<% end %>
+<p>
     <%= f.label(:title) %>
     <%= f.text_field(:title, autofocus: true, placeholder: 'Title goes here') %>
-  </p>
-  <p>
+</p>
+<p>
     <%= f.label(:body) %>
     <%= f.text_area(:body) %>
-  </p>
-  <p>
+</p>
+<p>
     <%= f.label(:location) %>
     <%= f.text_field(:location) %>
-  </p>
-  <%= f.submit %>
+</p>
+<%= f.submit %>
 <% end %>
