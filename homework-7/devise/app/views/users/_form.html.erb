@@ -25,5 +25,11 @@
     <%= f.label(:profile) %>
     <%= f.text_area(:profile) %>
 </p>
+<% if current_user.admin? %>
+<p>
+    <%= f.label(:admin) %>
+    <%= f.text_field(:admin) %>
+</p>
+<% end %>
 <%= f.submit %>
 <% end %>

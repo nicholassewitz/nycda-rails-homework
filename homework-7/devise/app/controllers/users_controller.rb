@@ -19,11 +19,18 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if current_user.admin?
+      find_user
+    elsif current_user != find_user
+      redirect_to root_path, notice: 'You cannot edit this user!'
+    else
+      find_user
+    end
   end
 
   def update
     @user.update(user_params)
-    redirect_to_user_if_valid('You successfully created a user')
+    redirect_to_user_if_valid('You successfully updated a user')
   end
 
   def destroy
