@@ -6,9 +6,6 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
   end
 
-  def show
-  end
-
   def new
     @tweet = Tweet.new
   end
@@ -39,7 +36,10 @@ class TweetsController < ApplicationController
   end
 
   def tweet_params
-    params[:tweet].permit(:title,:body,:location)
+    p = params[:tweet]
+    p.permit(:title,:body,:location, :photo, :s3_region)
+    # p.permit(:user_id) if current_user.admin?
+    # p
   end
 
   def redirect_to_tweet_if_valid(notice)

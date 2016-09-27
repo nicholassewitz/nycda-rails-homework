@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'tweets#index'
-  resources(:tweets)
+    devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks'}
+    root('tweets#index')
+    resources(:tweets)
+    resources(:users, only: [:index, :show, :edit, :update])
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
