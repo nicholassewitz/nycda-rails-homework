@@ -1,0 +1,39 @@
+<% if request.post? && @hotel.invalid? %>
+	<p>Uh oh, <%= pluralize(@hotel.errors.count, 'error') %>!</p>
+	<ul>
+		<% @hotel.errors.full_messages.each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= form_for(@hotel, html: {multipart: true}) do |f| %>
+	<% if admin? %>
+		<p>
+			<%= f.label(:user) %>
+			<%= f.collection_select(:user_id, User.all, :id, :email) %>
+		</p>
+	<% end %>
+	<% if new_hotel || admin? %>
+		<p>
+			<%= f.label(:name) %>
+			<%= f.text_field(:name, autofocus: true, placeholder: 'Hotel name goes here') %>
+		</p>
+	<% end %>
+	<p>
+		<%= f.label(:description) %>
+		<%= f.text_area(:description) %>
+		<% @hotel.errors[:description].each do |error| %>
+			<div><%= error %></div>
+		<% end %>
+	</p>
+	<p>
+		<%= f.label(:location) %>
+		<%= f.text_field(:location, placeholder: 'Hotel Location') %>
+	</p>
+	<p>
+		<%= f.label(:photo) %>
+		<%= f.file_field(:photo) %>
+	</p>
+	<p><%= f.submit(name) %></p>
+<% end %>

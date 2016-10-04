@@ -1,0 +1,7 @@
+<div>
+  <h2><%= link_to(hotel.name, hotel) %></h2>
+  <p>By: <%= hotel.user.email %></p>
+  <p><%= hotel.description %></p>
+  <p>At: <%= hotel.location %></p>
+  <p><%= image_tag(hotel.photo.url(:full)) %></p>
+</div>
