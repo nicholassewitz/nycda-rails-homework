@@ -3,7 +3,7 @@ class HotelsController < ApplicationController
 	before_action(:find_hotel, only: [:show, :edit, :update, :destroy])
 
 	def index
-		@hotel = Hotel.all
+		@hotels = Hotel.all
 	end
 
 	def new
@@ -13,7 +13,7 @@ class HotelsController < ApplicationController
 	def show
 		find_hotel
 	end
-	
+
 	def create
 		@hotel = current_user.hotels.create(hotel_params)
 		redirect_to_hotel_if_valid('You successfully created a hotel!')
@@ -40,7 +40,7 @@ class HotelsController < ApplicationController
 	end
 
 	def hotel_params
-		permitted_params = [:name, :description, :location, :photo]
+		permitted_params = [:name, :description, :street, :city, :state, :zip, :country, :photo]
 		permitted_params.push(:user_id) if admin?
 
 		params[:hotel].permit(permitted_params)

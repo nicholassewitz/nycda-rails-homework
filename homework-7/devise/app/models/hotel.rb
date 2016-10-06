@@ -2,9 +2,15 @@ class Hotel < ApplicationRecord
   belongs_to :user
 
   validates(:name, presence: {message: 'You must have a name.'}, uniqueness: true)
-  validates(:location, presence: true)
+  validates(:street, presence: true)
   validates(:user, presence: true)
 
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode
+
+  def address
+  [street, city, state, zip, country].compact.join(', ')
+  end
 
   has_attached_file(:photo,
                   styles: {thumbnail: '100x100>', full: '300x300>'},
@@ -30,13 +36,14 @@ class Hotel < ApplicationRecord
   end
 
   def self.search(query)
-    where('name LIKE ? OR body LIKE ?',
-          like(query),
+    where('name LIKE ?',
           like(query))
   end
 
   def self.like(condition)
     "%#{condition}%"
   end
-  
+
+  # def self.near(query, 10, order: :distance)
+  # end
 end
