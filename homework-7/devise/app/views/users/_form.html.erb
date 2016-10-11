@@ -28,7 +28,7 @@
 <% if current_user.admin? %>
 <p>
     <%= f.label(:admin) %>
-    <%= f.text_field(:admin) %>
+    <%= f.check_box(:admin) %>
 </p>
 <% end %>
 <%= f.submit %>

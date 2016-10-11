@@ -19,17 +19,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user.admin?
-      find_user
-    elsif current_user != find_user
+    find_user
+    unless current_or_admin
       redirect_to root_path, notice: 'You cannot edit this user!'
-    else
-      find_user
     end
   end
 
   def update
-    @user.update(user_params)
+    unless current_or_admin
+      @user.update(user_params)
+    end
     redirect_to_user_if_valid('You successfully updated a user')
   end
 
@@ -40,12 +39,16 @@ class UsersController < ApplicationController
 
   private
 
+  def current_or_admin
+    current_user.admin? || current_user == @user
+  end
+
   def find_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    params[:user].permit(:name,:headline,:profile,:email)
+    params[:user].permit(:name,:headline,:profile,:email,:admin)
   end
 
   def redirect_to_user_if_valid(notice)

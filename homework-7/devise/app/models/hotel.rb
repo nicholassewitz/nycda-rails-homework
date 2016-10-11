@@ -36,7 +36,11 @@ class Hotel < ApplicationRecord
   end
 
   def self.search(query)
-    where('name LIKE ?',
+    where('street LIKE ? OR city LIKE ? OR state LIKE ? OR country LIKE ? OR zip LIKE ?',
+          like(query),
+          like(query),
+          like(query),
+          like(query),
           like(query))
   end
 
